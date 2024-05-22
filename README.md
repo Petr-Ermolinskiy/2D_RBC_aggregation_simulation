@@ -10,6 +10,10 @@ __Note__: In the simulation, the RBC is represented as a solid rectangle.
 
 See __Example.ipynb__ file.
 
+## Example
+
+![Example](https://github.com/Petr-Ermolinskiy/2D_RBC_aggregation_simulation/tree/main/test.mp4)
+
 ## Requirements
 This code was tested only with `Python 3.10.13`.
 
