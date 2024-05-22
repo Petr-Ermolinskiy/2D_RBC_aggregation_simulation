@@ -12,11 +12,11 @@ See __Example.ipynb__ file.
 ## Citation
 
 If it usufull you can cite this repository:
-
+```
 @software{Ermolinskiy2024,
 	author = {Ermolinskiy, P.},
 	title = {GitHub repository},
 	year = {2024},
 	url = {https://github.com/Petr-Ermolinskiy/2D_RBC_aggregation_simulation}
 }
-
+```
