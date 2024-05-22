@@ -1,8 +1,10 @@
 # 2D red blood cell aggregation using deplition force approach
 
-This repository introduces the simulation of red blood cell aggregation using depletion force approach. 
+This repository introduces the simulation of red blood cell (RBC) aggregation using depletion force approach. 
 This simulation is mainly for __demonstration__ purposes, not to physically study the phenomenon. 
 Further modification of the code as well as its verification is required in order to use it for scientific purposes. 
+
+__Note__: In the simulation, the RBC is represented as a solid rectangle.
 
 ## Usage
 
