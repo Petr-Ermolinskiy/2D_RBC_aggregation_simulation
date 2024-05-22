@@ -1,4 +1,3 @@
-
 # 2D red blood cell aggregation using deplition force approach
 
 This repository introduces the simulation of red blood cell aggregation using depletion force approach. 
@@ -8,6 +7,21 @@ Further modification of the code as well as its verification is required in orde
 ## Usage
 
 See __Example.ipynb__ file.
+
+## Requirements
+This code was tested only with `Python 3.10.13`.
+
+Necessary libraries for the simulation:
+```python
+pip install "numpy==1.26.4"
+pip install "matplotlib==3.8.3"
+pip install "seaborn==0.13.2"
+pip install "pandas==2.2.1"
+```
+Also, make sure that the version of jupyter notebook < 7.0. The latest version of jupyter notebook may cause some problems.
+```python
+pip install notebook==6.5.6
+```
 
 ## Citation
 
