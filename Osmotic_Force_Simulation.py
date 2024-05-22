@@ -132,6 +132,8 @@ class Osmotic_Force_Simulation:
         # Parameters to control the matplotlib animation
         self.wider_domain_for_figure = 1.2
         self.shrink_the_size = 1 / 2
+        # macromolecule size marker for the animation
+        self.size_marker = dict_for_the_class['size_marker']
 
     def start(self, show_fig=False):
         initialize_simulation(self, show_fig=show_fig)
@@ -142,8 +144,8 @@ class Osmotic_Force_Simulation:
     def run(self):
         run_simulation(self)
 
-    def animate(self, file_name='rbc_aggregation', fps_in_persent=100, frame_step=1):
-        animate_simulation(self, file_name=file_name, fps_in_persent=fps_in_persent, frame_step=frame_step)
+    def animate(self, file_name='rbc_aggregation', fps_in_persent=100, frame_step=1, bitrate=20000):
+        animate_simulation(self, file_name=file_name, fps_in_persent=fps_in_persent, frame_step=frame_step, bitrate=bitrate)
 
     def plot(self, save=False, title=False, name='RBC_distance'):
         plot_movement(self, save=save, title=title, name=name)
@@ -186,7 +188,7 @@ def show_in_figure(self, time):
 
     if self.store_molecule_data:
         ax.scatter(self.macromolecule_positions_history[N_time][:, 0],
-                   self.macromolecule_positions_history[N_time][:, 1], c='blue', label='Macromolecules', s=2)
+                   self.macromolecule_positions_history[N_time][:, 1], c='blue', label='Macromolecules', s=self.size_marker)
     ax.add_patch(Rectangle((self.red_blood_cell_positions_history[N_time][0][0] - self.red_blood_cell_width / 2,
                             self.red_blood_cell_positions_history[N_time][0][1] - self.red_blood_cell_height / 2),
                            self.red_blood_cell_width, self.red_blood_cell_height, edgecolor='darkred', facecolor='red',
@@ -359,7 +361,7 @@ def check_intersection(x, v, domain):
 ###############################
 # Animate simulation and save it in the file
 ###############################
-def animate_simulation(self, file_name, fps_in_persent, frame_step):
+def animate_simulation(self, file_name, fps_in_persent, frame_step, bitrate):
     pos_array = np.array([self.red_blood_cell_width / 2, self.red_blood_cell_height / 2])
 
     shrink = self.shrink_the_size  # control the resolution of the final video
@@ -379,7 +381,7 @@ def animate_simulation(self, file_name, fps_in_persent, frame_step):
     ax.set(xlim=x_lim, ylim=y_lim)
 
     # scatter and scatter2 are objects into which the positions of macromolecules and RBCs are translated
-    scatter = ax.scatter([], [], c='blue', label='_Macromolecules', s=1)  # s - macromolecule_radius
+    scatter = ax.scatter([], [], c='blue', label='_Macromolecules', s=self.size_marker)  # s - macromolecule_radius
     scatter2 = ax.scatter([], [], c='red', label='_Red Blood Cells', s=5)
 
     ax.add_patch(Rectangle((-self.simulation_domain_size[0] / 2, -self.simulation_domain_size[1] / 2),
@@ -414,7 +416,7 @@ def animate_simulation(self, file_name, fps_in_persent, frame_step):
 
     # save animation
     FFwriter = animation.FFMpegWriter(fps=int((fps_in_persent / 100) * 1 / (frame_step * self.time_step)),
-                                      bitrate=20000)
+                                      bitrate=bitrate)
     ani.save(file_name + '.mp4', writer=FFwriter, dpi=200)
 
     print(f'Animation was saved in {file_name}' + '.mp4')
